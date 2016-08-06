@@ -1,0 +1,23 @@
+{
+  "name": "planning_poker",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iberianpig/planning_poker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iberianpig/planning_poker/issues"
+  },
+  "homepage": "https://github.com/iberianpig/planning_poker#readme",
+  "devDependencies": {
+    "easymock": "^0.2.19",
+    "eslint": "^3.2.2",
+    "eslint-plugin-react": "^6.0.0"
+  },
+  "scripts": {
+    "easymock": "easymock --port 8000 --path spec/api/easymock"
+  }
+}
