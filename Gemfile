@@ -10,6 +10,7 @@ gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'sassc-rails'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -30,6 +31,11 @@ gem 'redis', '~> 3.0'
 
 # react
 gem 'react-rails'
+
+# css framework
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
+gem 'bootstrap-material-design'
 
 # authentication
 gem 'omniauth'

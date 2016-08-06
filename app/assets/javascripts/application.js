@@ -13,7 +13,13 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require jquery
+//= require jquery2
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap-material-design
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on('ready page:load', function() {
+  $.material.init();
+});
