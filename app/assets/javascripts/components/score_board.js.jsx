@@ -1,21 +1,38 @@
-var columns = ['task', 'user1', 'user2']
+var users = [{id: 1, name: "山田"}, {id: 2, name: "三浦"}];
 var tasks = [
-  {id: 1, task: "機能", user1: "Aさん", user2: "Bさん"},
-  {id: 2, task: "テーブルを作る", user1: "2", user2: "3"},
-  {id: 3, task: "タスクを作る", user1: "1", user2: "4"},
+  {id: 1, task: "テーブルを作成する", users: [
+    {id: 1, name: "山田", score: 1},
+    {id: 2, name: "三浦", score: 3},
+  ]},
+  {id: 2, task: "スタイルを当てる", users: [
+    {id: 1, name: "山田", score: 1},
+    {id: 2, name: "三浦", score: 2},
+  ]},
+  {id: 3, task: "Reactのコンポーネントを作る", users: [
+    {id: 1, name: "山田", score: 3},
+    {id: 2, name: "三浦", score: 4},
+  ]},
 ];
 var TaskRow = React.createClass({
   render: function() {
+    var userScores = this.props.score.users.map(function(user) {
+      return (
+        <td>{user.score}</td>
+      );
+    });
     return (
-      <tr><td>{this.props.score.task}</td><td>{this.props.score.user1}</td><td>{this.props.score.user2}</td></tr>
+      <tr>
+        <td>{this.props.score.task}</td>
+        {userScores}
+      </tr>
     );
   }
 });
 var ScoreBoard = React.createClass({
   render: function(){
-    var taskHeaders = columns.map(function(column){
+    var headerUsers = users.map(function(user){
         return (
-          <th>{column}</th>
+          <th>{user.name}</th>
         );
     });
     var taskNodes = tasks.map(function(row) {
@@ -27,7 +44,8 @@ var ScoreBoard = React.createClass({
       <table className='table table-striped table-hover'>
         <thead>
           <tr>
-            {taskHeaders}
+            <th>タスク</th>
+            {headerUsers}
           </tr>
         </thead>
         <tbody>
