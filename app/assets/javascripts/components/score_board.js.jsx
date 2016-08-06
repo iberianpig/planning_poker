@@ -28,14 +28,14 @@ var TaskRow = React.createClass({
     );
   }
 });
-var ScoreBoard = React.createClass({
+var Tasks = React.createClass({
   render: function(){
-    var headerUsers = users.map(function(user){
+    var headerUsers = this.props.data.users.map(function(user){
         return (
           <th>{user.name}</th>
         );
     });
-    var taskNodes = tasks.map(function(row) {
+    var taskNodes = this.props.data.tasks.map(function(row) {
       return (
         <TaskRow score={row} key={row.id} />
       );
@@ -56,3 +56,32 @@ var ScoreBoard = React.createClass({
   }
 });
 
+var ScoreBoard = React.createClass({
+  loadTasksFromServer: function() {
+    var url = 'http://localhost:8000/sprints/1/tasks';
+    $.ajax({
+      url: url,
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        console.log(data);
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {data: {users: [], tasks: []}};
+  },
+  componentDidMount: function() {
+    this.loadTasksFromServer();
+    setInterval(this.loadTasksFromServer, 3000);
+  },
+  render: function(){
+    return (
+      <Tasks data={this.state.data} />
+    );
+  }
+});
